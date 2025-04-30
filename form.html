@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Clone</title>
+    <style>
+        :root {
+            --primary: #673ab7;
+            --primary-light: #ede7f6;
+            --border: #dadce0;
+            --text: #202124;
+            --text-secondary: #70757a;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0ebf8;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        
+        .form-header, .form-section, .form-footer {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .form-header {
+            border-top: 10px solid var(--primary);
+            padding: 24px;
+        }
+        
+        .form-title {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        
+        .form-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .required-notice {
+            font-size: 14px;
+            color: #d93025;
+            margin-top: 16px;
+        }
+        
+        .form-section {
+            padding: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .question {
+            margin-bottom: 16px;
+        }
+        
+        .question-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .required {
+            color: #d93025;
+            margin-left: 4px;
+        }
+        
+        input[type="text"], 
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px 0;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            outline: none;
+            transition: border-bottom 0.2s;
+        }
+        
+        input[type="text"]:focus, 
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus,
+        select:focus {
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        select {
+            background-color: transparent;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        
+        .radio-group {
+            margin-top: 8px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--primary);
+        }
+        
+        .form-footer {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .submit-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .submit-button:hover {
+            background-color: #5e35b1;
+        }
+        
+        .clear-form {
+            color: var(--primary);
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .clear-form:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+            
+            .form-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1 class="form-title">Registration Form</h1>
+            <p class="form-description">Please fill out the information below</p>
+            <div class="required-notice">* Required</div>
+        </div>
+        
+        <form id="google-form">
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Full Name<span class="required">*</span></div>
+                    <input type="text" name="fullName" required placeholder="Your full name">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Contact Number<span class="required">*</span></div>
+                    <input type="tel" name="contactNumber" required placeholder="Your phone number">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Address<span class="required">*</span></div>
+                    <textarea name="address" required placeholder="Your complete address"></textarea>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Company Name<span class="required">*</span></div>
+                    <input type="text" name="companyName" required placeholder="Your company name">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Email Address<span class="required">*</span></div>
+                    <input type="email" name="email" required placeholder="Your email address">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Department<span class="required">*</span></div>
+                    <select name="department" required>
+                        <option value="" disabled selected>Choose your department</option>
+                        <option value="HR">HR</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Development">Development</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="question">
+                    <div class="question-title">Gender<span class="required">*</span></div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="prefer-not-to-say" name="gender" value="Prefer not to say">
+                            <label for="prefer-not-to-say">Prefer not to say</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                <button type="submit" class="submit-button">Submit</button>
+                <button type="reset" class="clear-form">Clear form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Simple form validation and submission handling
+        const form = document.getElementById('google-form');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted successfully!');
+            form.reset();
+        });
+        
+        // Add a simple animation when clicking radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        
+        radioButtons.forEach(input => {
+            input.addEventListener('click', function() {
+                this.parentElement.style.transform = 'scale(1.03)';
+                setTimeout(() => {
+                    this.parentElement.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
